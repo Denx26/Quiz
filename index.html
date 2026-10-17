@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pentru Nuria (Pitica) 🌸</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffeef8 0%, #ffd6ed 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(224, 140, 188, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            transition: all 0.5s ease;
+        }
+
+        h2 {
+            color: #d63384;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        p {
+            color: #6c757d;
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 100px;
+            width: 100%;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .btn-pink {
+            background-color: #ff65a3;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 101, 163, 0.4);
+        }
+
+        .btn-pink:hover {
+            background-color: #f74d90;
+            transform: scale(1.03);
+        }
+
+        .btn-gray {
+            background-color: #e9ecef;
+            color: #495057;
+            max-width: 120px;
+        }
+
+        #btnNo {
+            position: absolute;
+            transition: all 0.2s linear;
+            z-index: 10;
+        }
+
+        /* Animație Inimă */
+        .heart {
+            font-size: 80px;
+            color: #ff4181;
+            animation: beat 0.8s infinite alternate;
+            margin-bottom: 20px;
+        }
+
+        @keyframes beat {
+            to {
+                transform: scale(1.2);
+            }
+        }
+
+        .angry-emoji {
+            font-size: 90px;
+            animation: shake 0.3s infinite;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translate(1px, 1px) rotate(0deg);
+            }
+
+            10% {
+                transform: translate(-1px, -2px) rotate(-1deg);
+            }
+
+            20% {
+                transform: translate(-3px, 0px) rotate(1deg);
+            }
+
+            30% {
+                transform: translate(0px, 2px) rotate(0deg);
+            }
+
+            40% {
+                transform: translate(1px, -1px) rotate(1deg);
+            }
+
+            50% {
+                transform: translate(-1px, 2px) rotate(-1deg);
+            }
+
+            60% {
+                transform: translate(-3px, 1px) rotate(0deg);
+            }
+
+            70% {
+                transform: translate(2px, 1px) rotate(-1deg);
+            }
+
+            80% {
+                transform: translate(-1px, -1px) rotate(1deg);
+            }
+
+            90% {
+                transform: translate(2px, 2px) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(1px, -2px) rotate(-1deg);
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card" id="appCard">
+
+        <div id="stepStart">
+            <h2>Bună, pitico... 🌸</h2>
+            <p>Am pregătit ceva scurt pentru tine. Ai nevoie de puțină atenție și de 2 minute libere.</p>
+            <p style="font-weight: bold; color: #d63384;">Ești pregătită să începi? 🥺</p>
+            <div class="btn-container">
+                <button class="btn-pink" onclick="nextStep('stepStart', 'step1')">Apasă aici 🥰</button>
+            </div>
+        </div>
+
+        <!-- PASUL 1: Întrebarea cu desertul -->
+        <div id="step1" class="hidden">
+            <h2>Întrebarea 1 🌸</h2>
+            <p id="errorText1">Care este desertul nostru preferat pe care l-am reținut de la începuturi?</p>
+            <div class="btn-container">
+                <button class="btn-pink" onclick="checkAnswer1(false)">Trandafiri roșii</button>
+                <button class="btn-pink" onclick="checkAnswer1(true)">Pufuleți cu ciocolată 🍫</button>
+                <button class="btn-pink" onclick="checkAnswer1(false)">Foietaje cu gem</button>
+            </div>
+        </div>
+
+        <!-- PASUL 2: Întrebarea cu obiceiul de seară -->
+        <div id="step2" class="hidden">
+            <h2>Întrebarea 2 💤</h2>
+            <p id="errorText2">Ce facem noi în ultimele săptămâni în fiecare seară, până ne ia somnul de tot?</p>
+            <div class="btn-container">
+                <button class="btn-pink" onclick="checkAnswer2(true)">Dormim amândoi pe apel 😍</button>
+                <button class="btn-pink" onclick="checkAnswer2(false)">Ne dăm mesaje seci</button>
+                <button class="btn-pink" onclick="checkAnswer2(false)">Ne uităm separat la filme</button>
+            </div>
+        </div>
+
+        <div id="step3" class="hidden">
+            <h2>Întrebarea 3 ✨</h2>
+            <p id="errorText3">Pentru cine s-a făcut o anumită „lipitoare” super sexy și „giugiuc” zilele trecute?</p>
+            <div class="btn-container">
+                <button class="btn-pink" onclick="checkAnswer3(false)">Pentru noul ei telefon</button>
+                <button class="btn-pink" onclick="checkAnswer3(true)">Pentru iubirea vieții ei (Denis) 🥵❤️</button>
+                <button class="btn-pink" onclick="checkAnswer3(false)">Pentru colegele de la facultate</button>
+            </div>
+        </div>
+
+        <div id="stepFinal" class="hidden">
+            <h2>Marea Întrebare... 🥺❤️</h2>
+            <p>Dincolo de toate mesajele, de gânditul prea mult și de agitația de zi cu zi... tu știi deja tot ce simt.
+            </p>
+            <p style="font-weight: bold; color: #d63384; font-size: 18px;">Vrei să fii iubita mea, secretoaso? 🥰</p>
+            <div class="btn-container" style="min-height: 150px;">
+                <div class="btn-row" id="initialRow">
+                    <button class="btn-pink" onclick="sayYes()">DA! 💖</button>
+                    <button class="btn-gray" id="btnNo" onmouseover="moveButton()" onclick="sayNo()">NU 😡</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FINALUL FERICIT (DA) -->
+        <div id="stepYes" class="hidden">
+            <div class="heart">❤️</div>
+            <h2>Oficial cea mai fericită zi! 😍</h2>
+            <p style="color: #495057; font-size: 17px; line-height: 1.6;">
+                Promit să am mereu grijă de tine, să te strâng în brațe sub pătură și să te pup din cap până în
+                picioare. Ești oficial păpușica mea și promit să nu te mai las niciodată nemâncată! 🌸✨
+            </p>
+        </div>
+
+        <!-- FINALUL NERVOS (NU) -->
+        <div id="stepNo" class="hidden">
+            <div class="angry-emoji">😡</div>
+            <h2 style="color: #dc3545; margin-top: 20px;">AI REUȘIT SĂ APESI NU?!</h2>
+            <p style="color: #dc3545; font-weight: bold;">Răspuns incorect! Pagina asta se va auto-distruge. Apasă
+                refresh și alege ce trebuie! 😤🔨</p>
+            <button class="btn-pink" onclick="location.reload()" style="margin-top: 15px;">M-am răzgândit, DA
+                🥺</button>
+        </div>
+    </div>
+
+    <script>
+        function nextStep(currentId, nextId) {
+            document.getElementById(currentId).classList.add('hidden');
+            document.getElementById(nextId).classList.remove('hidden');
+        }
+
+        function checkAnswer1(isCorrect) {
+            if (isCorrect) {
+                nextStep('step1', 'step2');
+            } else {
+                let el = document.getElementById('errorText1');
+                el.innerHTML = "Nuuu, mai încearcă! Chiar ai uitat ce adoră păpușica mea? 😜";
+                el.style.color = '#dc3545';
+            }
+        }
+
+        function checkAnswer2(isCorrect) {
+            if (isCorrect) {
+                nextStep('step2', 'step3');
+            } else {
+                let el = document.getElementById('errorText2');
+                el.innerHTML = "Greșit! Știi bine că apelul ăla lung e ritualul nostru! 📞✨";
+                el.style.color = '#dc3545';
+            }
+        }
+
+        function checkAnswer3(isCorrect) {
+            if (isCorrect) {
+                nextStep('step3', 'stepFinal');
+            } else {
+                let el = document.getElementById('errorText3');
+                el.innerHTML = "Fii serioasă! Recunoaște pentru cine te-ai aranjat! 😜";
+                el.style.color = '#dc3545';
+            }
+        }
+
+        function moveButton() {
+            const btnNo = document.getElementById('btnNo');
+            const x = Math.random() * (180 - (-90)) + (-90);
+            const y = Math.random() * (80 - (-40)) + (-40);
+            btnNo.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        function sayYes() {
+            document.getElementById('stepFinal').classList.add('hidden');
+            document.getElementById('stepYes').classList.remove('hidden');
+            document.body.style.background = "linear-gradient(135deg, #ffdeec 0%, #ffb3d1 100%)";
+        }
+
+        function sayNo() {
+            document.getElementById('stepFinal').classList.add('hidden');
+            document.getElementById('stepNo').classList.remove('hidden');
+            document.body.style.background = '#f8d7da';
+        }
+
+    </script>
+
+</body>
